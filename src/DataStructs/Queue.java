@@ -1,10 +1,12 @@
 package DataStructs;
 
+import java.util.NoSuchElementException;
+
 public class Queue<Type> {
 
-    private Node first;
-    private Node last;
-    private int n;
+    private Node<Type> first;
+    private Node<Type> last;
+    private int n = 0;
 
     public boolean isEmpty() {
         return first == null;
@@ -15,8 +17,8 @@ public class Queue<Type> {
     }
 
     public void enqueue(Type item) {
-        Node secLast = last;
-        last = new Node();
+        Node<Type> secLast = last;
+        last = new Node<Type>();
         last.item = item;
         last.next = null;
         if (isEmpty()) {
@@ -28,7 +30,10 @@ public class Queue<Type> {
     }
 
     public Type dequeue() {
-        Type item = (Type) first.item;
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue Underflow");
+        }
+        Type item = first.item;
         first = first.next;
         n--;
         if (isEmpty()) {
