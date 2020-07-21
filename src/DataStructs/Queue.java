@@ -1,12 +1,19 @@
 package DataStructs;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Queue<Type> {
+public class Queue<Type> implements Iterable<Type> {
 
     private Node<Type> first;
     private Node<Type> last;
-    private int n = 0;
+    private int n;
+
+    public Queue() {
+        first = null;
+        last = null;
+        n = 0;
+    }
 
     public boolean isEmpty() {
         return first == null;
@@ -40,5 +47,41 @@ public class Queue<Type> {
             last = null;
         }
         return item;
+    }
+
+    public Type peek() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue Underflow");
+        }
+        return first.item;
+    }
+
+    public Iterator<Type> iterator() {
+        return new LLIterator(first);
+    }
+
+    private class LLIterator implements Iterator<Type> {
+        private Node<Type> current;
+
+        public LLIterator(Node<Type> item) {
+            current = item;
+        }
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public Type next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            Type item = current.item;
+            current = current.next;
+            return item;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 }
