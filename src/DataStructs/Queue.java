@@ -9,6 +9,9 @@ public class Queue<Type> implements Iterable<Type> {
     private Node<Type> last;
     private int n;
 
+    /**
+     * Initializes empty Queue
+     */
     public Queue() {
         first = null;
         last = null;
@@ -57,13 +60,13 @@ public class Queue<Type> implements Iterable<Type> {
     }
 
     public Iterator<Type> iterator() {
-        return new LLIterator(first);
+        return new QueueIterator(first);
     }
 
-    private class LLIterator implements Iterator<Type> {
+    private class QueueIterator implements Iterator<Type> {
         private Node<Type> current;
 
-        public LLIterator(Node<Type> item) {
+        public QueueIterator(Node<Type> item) {
             current = item;
         }
 

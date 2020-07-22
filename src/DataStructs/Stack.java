@@ -13,11 +13,11 @@ public class Stack<Type> {
         n = 0;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return top == null;
     }
 
-    private int size() {
+    public int size() {
         return n;
     }
 
@@ -46,13 +46,13 @@ public class Stack<Type> {
     }
 
     public Iterator<Type> iterator() {
-        return new LLIterator(top);
+        return new StackIterator(top);
     }
 
-    private class LLIterator implements Iterator<Type> {
+    private class StackIterator implements Iterator<Type> {
         private Node<Type> current;
 
-        public LLIterator(Node<Type> item) {
+        public StackIterator(Node<Type> item) {
             current = item;
         }
 
