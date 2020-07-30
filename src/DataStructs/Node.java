@@ -7,6 +7,6 @@ package DataStructs;
  */
 public class Node<Type> {
 
-    Type item; // element of type 'Type'
-    Node<Type> next; // Node that current node points to
+    public Type item; // element of type 'Type'
+    public Node<Type> next; // Node that current node points to
 }
