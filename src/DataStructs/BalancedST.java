@@ -2,17 +2,20 @@ package DataStructs;
 
 
 /**
- * Class representing a binary search tree with key-value pairs
+ * Class representing a Balanced search tree with key-value pairs
  *
  * @param <Type> Generic data type of an element
  */
-public class BalancedBST<Type> {
+public class BalancedST<Type> {
 
     private BinTreeNode<Type> root;
     private static final boolean RED = true;
     private static final boolean BLACK = false;
 
-    public BalancedBST() {
+    /**
+     * Initializes empty balanced ST
+     */
+    public BalancedST() {
     }
 
     private boolean isRed(BinTreeNode<Type> node) {
