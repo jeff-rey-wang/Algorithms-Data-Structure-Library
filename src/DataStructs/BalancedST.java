@@ -2,11 +2,11 @@ package DataStructs;
 
 
 /**
- * Class representing a Balanced search tree with key-value pairs
+ * Class representing a Balanced search tree with key-value pairs, where keys are integes
  *
- * @param <Type> Generic data type of an element
+ * @param <Type> Generic data type of a value
  */
-public class BalancedST<Type> {
+public class BalancedST<Integer, Type> {
 
     private BinTreeNode<Type> root;
     private static final boolean RED = true;
@@ -17,6 +17,8 @@ public class BalancedST<Type> {
      */
     public BalancedST() {
     }
+
+    // HELPER FUNCTIONS
 
     private boolean isRed(BinTreeNode<Type> node) {
         if (node == null) {
@@ -30,7 +32,31 @@ public class BalancedST<Type> {
     }
 
     public boolean contains(int key) {
-        return true;
+        return search(key) != null;
+    }
+
+    private BinTreeNode<Type> rotateR(BinTreeNode<Type> x) {
+        BinTreeNode<Type> y = x.left;
+        x.left = y.right;
+        y.right = x;
+        y.colour = y.right.colour;
+        y.right.colour = RED;
+        return y;
+    }
+
+    private BinTreeNode<Type> rotateL(BinTreeNode<Type> x) {
+        BinTreeNode<Type> y = x.right;
+        x.right = y.left;
+        y.left = x;
+        y.colour = y.left.colour;
+        y.left.colour = RED;
+        return y;
+    }
+
+    private void flipColours(BinTreeNode<Type> x) {
+        x.colour = !x.colour;
+        x.left.colour = !x.left.colour;
+        x.right.colour = !x.right.colour;
     }
 
     public Type search(int key) {
